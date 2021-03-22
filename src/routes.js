@@ -17,6 +17,8 @@ export const Routes = {
     NotFound: { path: "/examples/404" },
     ServerError: { path: "/examples/500" },
     Products: { path: "/Products" },
+    Purchasing: { path: "/Purchasing"},
+    Backorder: {path: "/Backorder"},
 
     // docs
     DocsOverview: { path: "/documentation/overview" },

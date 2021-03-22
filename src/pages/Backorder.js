@@ -3,6 +3,7 @@ import { Breadcrumb, Button, ButtonGroup, Row, Col, InputGroup, Form, Dropdown, 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faPlus, faCog, faCheck, faSearch, faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import products from '../data/products';
+import backorderdata from '../data/backorderdata'
 export default () => {
     return ( 
         <div>
@@ -10,16 +11,15 @@ export default () => {
             <Breadcrumb className="d-none d-md-inline-block" listProps={{ className: "breadcrumb-dark breadcrumb-transparent" }}>
             <Breadcrumb.Item><FontAwesomeIcon icon={faHome} /></Breadcrumb.Item>
             <Breadcrumb.Item>PCCG</Breadcrumb.Item>
-            <Breadcrumb.Item active>Products</Breadcrumb.Item>
+            <Breadcrumb.Item active>Backorder</Breadcrumb.Item>
         </Breadcrumb>
-        <h4>Products</h4>
+        <h4>Backorder</h4>
     </div>
     <div className="btn-toolbar mb-2 mb-md-0">
         <Button variant="primary" size="sm">
-            <FontAwesomeIcon icon={faPlus} className="me-2" /> Add New Product
+            <FontAwesomeIcon icon={faPlus} className="me-2" /> Add to Backorder
         </Button>
         <ButtonGroup className="ms-3">
-            <Button variant="outline-primary" size="sm">Share</Button>
             <Button variant="outline-primary" size="sm">Export</Button>
         </ButtonGroup>
     </div>
@@ -35,26 +35,11 @@ export default () => {
             </InputGroup>
             <Form.Select className="w-25">
                 <option defaultChecked>All</option>
-                <option value="1">Active</option>
-                <option value="2">Inactive</option>
+                <option value="1">In Stock</option>
+                <option value="2">Out of Stock</option>
             </Form.Select>
         </Col>
         <Col xs={3} lg={8} className="text-end">
-            <Dropdown as={ButtonGroup} className="me-2">
-                <Dropdown.Toggle split as={Button} variant="link" className="text-dark m-0 p-0">
-                    <span className="icon icon-sm icon-gray">
-                        <FontAwesomeIcon icon={faSlidersH} />
-                    </span>
-                </Dropdown.Toggle>
-                <Dropdown.Menu className="dropdown-menu-right">
-                    <Dropdown.Item className="fw-bold text-dark">Show</Dropdown.Item>
-                    <Dropdown.Item className="d-flex fw-bold">
-                        10 <span className="icon icon-small ms-auto"><FontAwesomeIcon icon={faCheck} /></span>
-                    </Dropdown.Item>
-                    <Dropdown.Item className="fw-bold">20</Dropdown.Item>
-                    <Dropdown.Item className="fw-bold">30</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
             <Dropdown as={ButtonGroup}>
                 <Dropdown.Toggle split as={Button} variant="link" className="text-dark m-0 p-0">
                     <span className="icon icon-sm icon-gray">
@@ -78,29 +63,34 @@ export default () => {
             <Table hover className="user-table align-items-center">
                 <thead>
                     <tr>
-                        <th className="border-bottom">Model</th>
-                        <th className="border-bottom">Description</th>
-                        <th className="border-bottom">Barcode</th>
-                        <th className="border-bottom">Quantity</th>
-                        <th className="border-bottom">Bay</th>
+                        <th className="border-bottom">Date Purchased</th>
+                        <th className="border-bottom">Order Number</th>
+                        <th className="border-bottom">Product</th>
+                        <th className="border-bottom">Qty(Inv)</th>
+                        <th className="border-bottom">Qty Req/Avail</th>
+                        <th className="border-bottom">Customer</th>  
+                        <th className="border-bottom">ETA</th>
                     </tr>
                 </thead>
                 <tbody>
-                {products.map(u => (
+                {backorderdata.map(u => (
                     <tr key={u.key}>
                         <td>
                             <Card.Link className="d-flex align-items-center">
                                
                                 <div className="d-block">
-                                    <span className="fw-bold">{u.Model}</span>
+                                    <span className="fw-normal">{u.datepurch}</span>
 
                                 </div>
                             </Card.Link>
                         </td>
-                        <td><span className="fw-normal"><div className="small text-gray">{u.Description}</div></span></td>
-                        <td><span className="fw-normal"><div className="small text-gray">{u.Barcode}</div></span></td>
-                        <td><span className="fw-normal"><div className="small text-gray">{u.Qty}</div></span></td>
-                        <td><span className="fw-normal"><div className="small text-gray">{u.Bay}</div></span></td>
+                        <td><span className="fw-normal"><div className="small text-gray">{u.ordernum}</div></span></td>
+                        <td><span className="fw-normal"><div className="small text-gray">{u.Model}</div></span></td>
+                        <td><span className="fw-normal"><div className="small text-gray">{u.qty}</div></span></td>
+                        <td><span className="fw-normal"><div className="small text-gray">{u.qtyreq}</div></span></td>
+                        <td><span className="fw-normal"><div className="small text-gray">{u.customer}</div></span></td>                   
+                        <td><span className="fw-normal"><div className="small text-gray">{u.eta}</div></span></td>
+
                         
                          </tr>
                         ))}

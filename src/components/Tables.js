@@ -191,7 +191,7 @@ export const TransactionsTable = () => {
   const totalTransactions = transactions.length;
 
   const TableRow = (props) => {
-    const { invoiceNumber, subscription, price, issueDate, dueDate, status } = props;
+    const { ordernum, customer, paymethod, shipmethod, ordertotal, balance, datepurch, status } = props;
     const statusVariant = status === "Paid" ? "success"
       : status === "Due" ? "warning"
         : status === "Canceled" ? "danger" : "primary";
@@ -200,27 +200,37 @@ export const TransactionsTable = () => {
       <tr>
         <td>
           <Card.Link as={Link} to={Routes.Invoice.path} className="fw-normal">
-            {invoiceNumber}
+            {ordernum}
           </Card.Link>
         </td>
         <td>
           <span className="fw-normal">
-            {subscription}
+            {customer}
           </span>
         </td>
         <td>
           <span className="fw-normal">
-            {issueDate}
+            {paymethod}
           </span>
         </td>
         <td>
           <span className="fw-normal">
-            {dueDate}
+            {shipmethod}
+          </span>
+        </td>
+        <td>
+        <span className="fw-normal">
+            {ordertotal}
           </span>
         </td>
         <td>
           <span className="fw-normal">
-            ${parseFloat(price).toFixed(2)}
+            {balance}
+          </span>
+        </td>
+        <td>
+          <span className="fw-normal">
+            {datepurch}
           </span>
         </td>
         <td>
@@ -258,13 +268,14 @@ export const TransactionsTable = () => {
         <Table hover className="user-table align-items-center">
           <thead>
             <tr>
-              <th className="border-bottom">#</th>
-              <th className="border-bottom">Bill For</th>
-              <th className="border-bottom">Issue Date</th>
-              <th className="border-bottom">Due Date</th>
-              <th className="border-bottom">Total</th>
+              <th className="border-bottom">Order Number</th>
+              <th className="border-bottom">Customer</th>
+              <th className="border-bottom">Payment Method</th>
+              <th className="border-bottom">Shipping Method</th>
+              <th className="border-bottom">Order Total</th>
+              <th className="border-bottom">Balance Due</th>
+              <th className="border-bottom">Date Purchased</th>
               <th className="border-bottom">Status</th>
-              <th className="border-bottom">Action</th>
             </tr>
           </thead>
           <tbody>

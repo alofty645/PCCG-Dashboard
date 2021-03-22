@@ -17,7 +17,8 @@ import Lock from "./examples/Lock";
 import NotFoundPage from "./examples/NotFound";
 import ServerError from "./examples/ServerError";
 import Products from "./Products";
-
+import Purchasing from "./Purchasing"
+import Backorder from "./Backorder"
 // documentation pages
 import DocsOverview from "./documentation/DocsOverview";
 import DocsDownload from "./documentation/DocsDownload";
@@ -137,7 +138,8 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithSidebar exact path={Routes.Products.path} component={Products} /> {/* register this new route */}
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
-
+    <RouteWithSidebar exact path={Routes.Purchasing.path} component={Purchasing} />
+    <RouteWithSidebar exact path={Routes.Backorder.path} component={Backorder} />
     {/* documentation */}
     <RouteWithSidebar exact path={Routes.DocsOverview.path} component={DocsOverview} />
     <RouteWithSidebar exact path={Routes.DocsDownload.path} component={DocsDownload} />

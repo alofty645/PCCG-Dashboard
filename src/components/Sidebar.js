@@ -4,12 +4,11 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { Routes } from "../routes";
-import ThemesbergLogo from "../assets/img/themesberg.svg";
 import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 
@@ -97,18 +96,27 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="PC Case Gear" link={Routes.Presentation.path} image={ReactHero} />
+              <NavItem title="PC Case Gear"/>
 
               <NavItem title="Overview" link={Routes.DashboardOverview.path} icon={faChartPie} />
               <NavItem title="Orders" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
               <NavItem title="Products" icon={faHandHoldingUsd} link={Routes.Products.path} />
-              <NavItem title="Purchasing" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
-              <NavItem title="Backorder" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
+              <NavItem title="Purchasing" icon={faHandHoldingUsd} link={Routes.Purchasing.path} />
+              <NavItem title="Backorder" icon={faHandHoldingUsd} link={Routes.Backorder.path} />
 
               <CollapsableNavItem eventKey="examples/" title="Warehouse" icon={faFileAlt}>
                 <NavItem title="Picking" link={Routes.Lock.path} />
                 <NavItem title="Packing" link={Routes.Signup.path} />
                 <NavItem title="Incoming" link={Routes.ForgotPassword.path} />
+                </CollapsableNavItem>
+
+              <CollapsableNavItem eventKey="examples/" title="Inventory" icon={faFileAlt}>
+                
+                <NavItem title="Put away" link={Routes.Lock.path} />
+                <NavItem title="Replenish" link={Routes.Signup.path} />
+                <NavItem title="Move/Fill" link={Routes.ForgotPassword.path} />
+                <NavItem title="Cycle Count" link={Routes.ForgotPassword.path} />
+                <NavItem title="Product Count" link={Routes.ForgotPassword.path} />
               </CollapsableNavItem>
 
               <CollapsableNavItem eventKey="examples/" title="Warranty" icon={faFileAlt}>
@@ -117,7 +125,8 @@ export default (props = {}) => {
              
 
               <Dropdown.Divider className="my-3 border-indigo" />
-              <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} />
+              <NavItem title="Account Settings" icon={faCog} link={Routes.Settings.path} />
+              <NavItem title="Notification Settings" icon={faCog} link={Routes.Settings.path} />
             </Nav>
           </div>
         </SimpleBar>
